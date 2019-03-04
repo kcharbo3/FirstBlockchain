@@ -78,3 +78,4 @@ The PSVNode is supposed to act similarly to the FullNode but not contain a copy 
 
 # Credit
 The CSS file is from youtuber Corey Schafer. He used it in his tutorial at https://www.youtube.com/watch?v=MwZwr5Tvyxo&list=PL-osiE80TeTs4UjLw5MM6OjgkjFeUxCYH&index=1
+The file is at https://github.com/CoreyMSchafer/code_snippets/blob/master/Python/Flask_Blog/07-User-Account-Profile-Pic/flaskblog/static/main.css
