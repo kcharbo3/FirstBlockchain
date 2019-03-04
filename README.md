@@ -70,9 +70,9 @@ MinerNode gathers a number of transactions from the mempool and groups them into
 
 Using the flask module, http request and get functions are added at the end. These functions allow hosts to host a Node and interact with a blockchain. The mine() function tries mining a block. The consensus() function checks the other blockchains of the other nodes and replaces its blockchain with longest one.
 
-## FullNode
+### FullNode
 FullNode is the same as MinerNode but has no mining functionality. It still has a copy of the blockchain.
 
-## PSVNode (In Progress)
+### SPVNode (In Progress)
 The PSVNode is supposed to act similarly to the FullNode but not contain a copy of the blockchain. It will verify transactions based on the merkle root and merkle path it is provided from a full or miner node in its network.
 
