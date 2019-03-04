@@ -1,6 +1,29 @@
 # First Blockchain
-My first implementation of a Bitcoin inspired blockchain using python 3.7.0.
+My first implementation of a Bitcoin inspired blockchain. It includes important features of bitcoin such as peer to peer decentralization, consensus, cryptographic keys, and proof of work.
 
+# Dependencies
+-  Python 3.0 and above
+-  Python Packages:
+  -  hashlib
+  -  time
+  -  datetime
+  -  collections
+  -  requests
+  -  urllib
+  -  flask
+  -  binascii
+  -  flask_wtf
+  -  wtforms
+  -  forms
+  -  fastecdsa
+  -  math
+  -  uuid
+-  HTML5
+
+# Usage
+To begin, run myApp.py using python 3.0 and above. Then open your browser to http://0.0.0.0:5000/. This will take you to the home page of the application. Here, you can choose to start a node of three types: Miner, Full, and SPV (in progress). There is also a Query option that can be chosen once you start a node. Clicking on one of these titles will take you to the node's main page. To return to the home page, click the top left of the navigation bar on "Running Node:...". At the node's main page you can register other nodes to your network and send transactions to other addresses. If you have a miner node, you can mine blocks for rewards. Once a node has been started, you can begin querying the blockchain by returning to the home page and clicking on "Query". This will take you to the query main page where you can search for a block number or a certain transaction. The SPV node is still in progress.
+
+Once you register a node, you have been connected to the network. In the network, once a transaction is sent from a node, that node broadcasts it to the other nodes in its network. These nodes will then broadcast that transaction to the nodes in its own network (unless it has already recieved the transaction). Once a block is mined by a miner node, it will broadcast the block to all nodes in its network. For each node that has a smaller blockchain height, it will replace its blockchain with the miner node's blockchain and then broadcast it to the nodes in its network.
 
 # Class Descriptions
 ## EllCurveMath
@@ -35,7 +58,7 @@ Stores a list of outputs, a list of inputs, the public key hash of the recipient
 The mempool stores the transactions waiting to be mined and validated on the blockchain.
 
 
-## MinerNode
+## Nodes
 ### Wallet
 The wallet class stores a copy of the blockchain, along with the list of private keys. It also keeps an updated dictionary of the balance of the private keys by summing the amount of UTXO (unspent transaction outputs) with a locking script of one of its public key hashes. The function sendTransaction() creates inputs with unlocking scripts of the signature generated from the EllCurveMath class. 
 
@@ -51,5 +74,5 @@ Using the flask module, http request and get functions are added at the end. The
 FullNode is the same as MinerNode but has no mining functionality. It still has a copy of the blockchain.
 
 ## PSVNode (In Progress)
-The PSVNode is supposed to act similarly to the FullNode but not contain a copy of the blockchain. It will verify transactions based on the merkle root and merkle path it is provided.
+The PSVNode is supposed to act similarly to the FullNode but not contain a copy of the blockchain. It will verify transactions based on the merkle root and merkle path it is provided from a full or miner node in its network.
 
