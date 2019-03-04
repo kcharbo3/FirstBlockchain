@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+
+    {% if title %}
+      <title>Query - {{ title }}</title>
+    {% else %}
+      <title>Query</title>
+    {% endif %}
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        <div class="container">
+          <a class="navbar-brand mr-4" href="/">Node Running: {{ activeN }}</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+            </div>
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav">
+              <a class="nav-item nav-link" href="{{ url_for('about') }}">About</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-8">
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+          <h1>Discover the Blockchain</h1>
+          <div class="content-section">
+            <form method="POST" action="">
+              {{ block_form.hidden_tag() }}
+              <fieldset class="form-group">
+                <legend class="Border-bottom mb-4">Search Blockchain:</legend>
+                <div class = "form-group">
+                  {{ block_form.blockNum.label(class="form-control-label") }}
+
+                  {% if block_form.blockNum.errors %}
+                    {{ block_form.blockNum(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                      {%  for error in block_form.blockNum.errors %}
+                        <span>{{ error }}</span>
+                      {% endfor %}
+                    </div>
+                  {% else %}
+                    {{ block_form.blockNum(class="form-control form-control-lg") }}
+                  {% endif %}
+                </div>
+              </fieldset>
+              <div class="form-group">
+                {{ block_form.submit5(class="btn btn-outline-info") }}
+              </div>
+            </form>
+            <article class="media content-section">
+              <div class="media-body">
+                <legend class="Border-bottom mb-4">Block: {{ blk }}</legend>
+                Amount  |  To  |  From  |  Tx Fee  |  Hash
+                </table>
+                <ul class="list-group">
+                  {% for tx in txs %}
+                    <li class="list-group-item list-group-item-light"> <small>{{ tx.Amount }} {{ tx.To }} {{tx.From }} <br/>{{ tx.TxFee }} {{ tx.Hash }}</small></li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </article>
+          </div>
+          <div class="content-section">
+            <form method="POST" action="">
+              {{ tx_form.hidden_tag() }}
+              <fieldset class="form-group">
+                <legend class="Border-bottom mb-4">Find Transaction:</legend>
+                <div class = "form-group">
+                  {{ tx_form.txHash.label(class="form-control-label") }}
+
+                  {% if tx_form.txHash.errors %}
+                    {{ tx_form.txHash(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                      {%  for error in tx_form.txHash.errors %}
+                        <span>{{ error }}</span>
+                      {% endfor %}
+                    </div>
+                  {% else %}
+                    {{ tx_form.txHash(class="form-control form-control-lg") }}
+                  {% endif %}
+                </div>
+              </fieldset>
+              <div class="form-group">
+                {{ tx_form.submit6(class="btn btn-outline-info") }}
+              </div>
+            </form>
+            <article class="media content-section">
+              <div class="media-body">
+                <ul class="list-group">
+                  <li class="list-group-item list-group-item-light"> <small>Amount: {{ fTx.Amount }}</small></li>
+                  <li class="list-group-item list-group-item-light"> <small>To: {{ fTx.To }}</small></li>
+                  <li class="list-group-item list-group-item-light"> <small>From: {{ fTx.From }}</small></li>
+                  <li class="list-group-item list-group-item-light"> <small>Tx Fee: {{ fTx.TxFee }}</small></li>
+                  <li class="list-group-item list-group-item-light"> <small>Hash: {{ fTx.Hash }}</small></li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h1><br></h1>
+          <div class="content-section">
+            <p class='text-muted'>Current Balance:</p>
+            <h3>{{ bal }} Coins</h3>
+          </div>
+          <div class="content-section">
+            <p class='text-muted'>Current Height of Blockchain:</p>
+            <h3>{{ height }} Blocks</h3>
+          </div>
+          <div class="content-section">
+            <p class='text-muted'>Current Coinbase Reward: {{ cb }} Coins</p>
+            <p class='text-muted'>Current Mining Difficulty: {{ dif }}</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

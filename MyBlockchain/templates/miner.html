@@ -1,0 +1,120 @@
+{% extends "layout.html" %}
+{% block content %}
+  <h1>Mining Node</h1>
+
+  <div class="content-section">
+    <form method="POST" action="">
+      {{ mine_form.hidden_tag() }}
+      <div class="form-group">
+        <legend class="Border-bottom mb-4">Begin Mining</legend> {{ mine_form.submit3(class="btn btn-outline-info") }}
+      </div>
+    </form>
+    <!--
+    <form method="POST" action="">
+      {{ refresh_form.hidden_tag() }}
+      <div class="form-group">
+        {{ refresh_form.submit4(class="btn btn-outline-info") }}
+      </div>
+    </form>
+    -->
+  </div>
+
+  <div class="content-section">
+    <form method="POST" action="">
+      {{ send_form.hidden_tag() }}
+      <fieldset class="form-group">
+        <legend class="Border-bottom mb-4">Send Transaction</legend>
+        <div class = "form-group">
+          {{ send_form.toAddress.label(class="form-control-label") }}
+
+          {% if send_form.toAddress.errors %}
+            {{ send_form.toAddress(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {%  for error in send_form.toAddress.errors %}
+                <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ send_form.toAddress(class="form-control form-control-lg") }}
+          {% endif %}
+        </div>
+      </fieldset>
+      <fieldset class="form-group">
+        <legend class="Border-bottom mb-4"></legend>
+        <div class = "form-group">
+          {{ send_form.amount.label(class="form-control-label") }}
+
+          {% if send_form.amount.errors %}
+            {{ send_form.amount(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {%  for error in send_form.amount.errors %}
+                <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ send_form.amount(class="form-control form-control-lg") }}
+          {% endif %}
+        </div>
+      </fieldset>
+      <fieldset class="form-group">
+        <legend class="Border-bottom mb-4"></legend>
+        <div class = "form-group">
+          {{ send_form.txFee.label(class="form-control-label") }}
+
+          {% if send_form.txFee.errors %}
+            {{ send_form.txFee(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {%  for error in send_form.txFee.errors %}
+                <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ send_form.txFee(class="form-control form-control-lg") }}
+          {% endif %}
+        </div>
+      </fieldset>
+      <div class="form-group">
+        {{ send_form.submit2(class="btn btn-outline-info") }}
+      </div>
+    </form>
+  </div>
+
+
+  <div class="content-section">
+    <form method="POST" action="">
+      {{ reg_form.hidden_tag() }}
+      <fieldset class="form-group">
+        <legend class="Border-bottom mb-4">Register Node:</legend>
+        <div class = "form-group">
+          {{ reg_form.nodeAddress.label(class="form-control-label") }}
+
+          {% if reg_form.nodeAddress.errors %}
+            {{ reg_form.nodeAddress(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {%  for error in reg_form.nodeAddress.errors %}
+                <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ reg_form.nodeAddress(class="form-control form-control-lg") }}
+          {% endif %}
+        </div>
+      </fieldset>
+      <div class="form-group">
+        {{ reg_form.submit1(class="btn btn-outline-info") }}
+      </div>
+    </form>
+    <article class="media content-section">
+      <div class="media-body">
+        Nodes in Your Network:
+        <ul class="list-group">
+          {% for node in nodes %}
+            <li class="list-group-item list-group-item-light"> <small>{{ node }}</small></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </article>
+  </div>
+
+
+{% endblock content %}

@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block content %}
+  <h1>Start a Node!</h1>
+  <article class="media content-section">
+    <div class="media-body">
+      <div class="article-metadata">
+        <small class="text-muted">Large Download</small>
+      </div>
+      <h2><a class="article-title" href="{{ url_for('minerNode') }}">Miner Node</a></h2>
+      <p class="article-content">
+        A miner node has the full blockchain downloaded along with the ability to mine blocks. These nodes can send transactions and query the blockchain. For each block mined, you will be rewarded a specified amount from the coinbase (can check the reward at the Query page). You will also be rewarded all of the transaction fees from the transactions in your mined block. However, you are competing with other nodes to mine the block.
+      </p>
+    </div>
+  </article>
+  <article class="media content-section">
+    <div class="media-body">
+      <div class="article-metadata">
+        <small class="text-muted">Large Download</small>
+      </div>
+      <h2><a class="article-title" href="{{ url_for('fullNode') }}">Full Node</a></h2>
+      <p class="article-content">
+        A full node has the full blockchain downloaded. These nodes can send transactions and query the blockchain. However, these nodes cannot mine blocks.
+      </p>
+    </div>
+  </article>
+  <article class="media content-section">
+    <div class="media-body">
+      <div class="article-metadata">
+        <small class="text-muted">Small Download</small>
+      </div>
+      <h2><a class="article-title" href="{{ url_for('spvNode') }}">SPV Node</a></h2>
+      <p class="article-content">
+        SPV nodes, also known as lightweight nodes, do not have the full blockchain downloaded. These nodes can still send transactions but cannot query the blockchain or mine blocks. These nodes require less memory space.
+      </p>
+    </div>
+  </article>
+  <article class="media content-section">
+    <div class="media-body">
+      <div class="article-metadata">
+        <small class="text-muted">Must have a node</small>
+      </div>
+      <h2><a class="article-title" href="{{ url_for('query') }}">Query the Blockchain</a></h2>
+      <p class="article-content">
+        The blockchain may be queried by users who have full or miner nodes. The transactions in each block may be explored. Specific transactions may be found by searching for the transaction hash.
+      </p>
+    </div>
+  </article>
+{% endblock content %}
