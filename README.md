@@ -73,7 +73,7 @@ Using the flask module, http request and get functions are added at the end. The
 FullNode is the same as MinerNode but has no mining functionality. It still has a copy of the blockchain.
 
 ### SPVNode (In Progress)
-The PSVNode is supposed to act similarly to the FullNode but not contain a copy of the blockchain. It will verify transactions based on the merkle root and merkle path it is provided from a full or miner node in its network.
+The SPVNode is supposed to act similarly to the FullNode but not contain a copy of the blockchain. It will verify transactions based on the merkle root and merkle path it is provided from a full or miner node in its network.
 
 # Credit
 The CSS file is from youtuber Corey Schafer. He used it in his tutorial at https://www.youtube.com/watch?v=MwZwr5Tvyxo&list=PL-osiE80TeTs4UjLw5MM6OjgkjFeUxCYH&index=1
