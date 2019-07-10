@@ -18,7 +18,6 @@ My first implementation of a Bitcoin inspired blockchain. It includes important 
   * fastecdsa
   * math
   * uuid
-* HTML5
 
 # Usage
 To begin, run myApp.py using python 3.0 and above. Then open your browser to http://0.0.0.0:5000/. This will take you to the home page of the application. Here, you can choose to start a node of three types: Miner, Full, and SPV (in progress). There is also a Query option that can be chosen once you start a node. Clicking on one of these titles will take you to the node's main page. To return to the home page, click the top left of the navigation bar on "Running Node:...". At the node's main page you can register other nodes to your network and send transactions to other addresses. If you have a miner node, you can mine blocks for rewards. Once a node has been started, you can begin querying the blockchain by returning to the home page and clicking on "Query". This will take you to the query main page where you can search for a block number or a certain transaction. The SPV node is still in progress.
